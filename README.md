@@ -1,4 +1,5 @@
 mtool.github.io
 ===============
 
-Handy tools for mobile debug.
+Mobile Debugging Tools, online.
+[http://mtool.github.io](http://mtool.github.io)

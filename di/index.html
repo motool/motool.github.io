@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <style>
+    #result { font: 14pt/1.6em Menlo, courier; }
+    .logline { display: flex; margin: 5pt 0 }
+    .logline dt, .logline dd { padding: 1pt 5pt }
+    .logline dt { width: 84pt; text-align: right; background-color: #EEE; }
+    .logline dd { flex: 1; margin: 0 }
+    .logline .meta { color: #AAA }
+  </style>
+</head>
+<body>
+  <div id="result"></div>
+  <script type="text/javascript">
+    var print = (function (doc){
+      var resultDiv = doc.getElementById('result')
+      return function (dt, dd) {
+        dd = dd || '<span class="meta">--</span>'
+        var raw = `<dl class="logline"><dt>${dt}</dt><dd>${dd}</dd></dl>`
+        resultDiv.insertAdjacentHTML('beforeend', raw)
+      }
+    })(document)
+
+    // CPU Cores
+    print('Cores', navigator.hardwareConcurrency)
+
+    // Online Status
+    print('Online', navigator.onLine)
+
+    // Connection
+    print('Connection', navigator.connection && navigator.connection.type)
+
+    // Battery Info
+    navigator.getBattery && navigator.getBattery().then(function (b) {
+      print('Battery', b.level * 100 + '%')
+    })
+  </script>
+</body>
+</html>
